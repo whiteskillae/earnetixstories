@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --color-brand-50: #eff6ff;
+  --color-brand-100: #dbeafe;
+  --color-brand-200: #bfdbfe;
+  --color-brand-300: #93c5fd;
+  --color-brand-400: #60a5fa;
+  --color-brand-500: #3b82f6;
+  --color-brand-600: #2563eb;
+  --color-brand-700: #1d4ed8;
+  --color-brand-800: #1e40af;
+  --color-brand-900: #1e3a8a;
+  --color-brand-950: #172554;
+
+  --font-sans: 'Inter', sans-serif;
+  --font-display: 'Outfit', sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent; /* Remove blue tap highlight on mobile */
+  }
+
+  body {
+    @apply bg-white text-slate-900 font-sans antialiased selection:bg-brand-100 selection:text-brand-900;
+    background-color: #ffffff;
+    background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+    background-size: 20px 20px;
+    min-height: 100vh;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold text-slate-800 tracking-tight;
+  }
+
+  button, a, input, textarea, select {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white transition-all;
+  }
+
+  img {
+    @apply max-w-full;
+  }
+}
+
+@layer components {
+  /* Native App-like Tokens */
+  .glass-panel {
+    @apply bg-white/70 backdrop-blur-2xl border border-white/60 shadow-[0_8px_30px_rgb(0,0,0,0.04)];
+  }
+
+  .glass-nav {
+    @apply bg-white/80 backdrop-blur-xl border-t border-slate-200/50 shadow-[0_-4px_24px_rgba(0,0,0,0.04)];
+  }
+
+  .app-card {
+    @apply rounded-2xl border border-white/80 bg-white shadow-sm shadow-slate-200/50 hover:shadow-xl hover:shadow-slate-200/60 transition-all duration-300;
+  }
+
+  .app-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold transition-all active:scale-[0.96];
+  }
+
+  .app-button-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-b from-brand-500 to-brand-600 px-4 py-2.5 text-sm font-bold text-white shadow-lg shadow-brand-500/25 hover:shadow-xl hover:shadow-brand-500/30 hover:-translate-y-0.5 active:scale-[0.96] transition-all;
+  }
+
+  .app-button-soft {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white/80 backdrop-blur-sm px-4 py-2.5 text-sm font-bold text-slate-700 transition-all hover:border-brand-200 hover:bg-brand-50 hover:text-brand-600 active:scale-[0.96] shadow-sm;
+  }
+
+  .content {
+    @apply text-slate-700;
+  }
+
+  .content p {
+    @apply my-5 text-base leading-8 sm:text-[1.1rem];
+  }
+
+  .content h2 {
+    @apply mt-10 mb-4 text-2xl;
+  }
+
+  .content h3 {
+    @apply mt-8 mb-3 text-xl;
+  }
+
+  .content a {
+    @apply font-semibold text-brand-600 underline decoration-brand-200 underline-offset-4 hover:decoration-brand-500 transition-colors;
+  }
+
+  .content img {
+    @apply my-8 rounded-2xl border border-slate-100 shadow-xl;
+  }
+
+  .content blockquote {
+    @apply my-8 rounded-2xl rounded-l-none border-l-4 border-brand-500 bg-brand-50/50 p-6 italic text-slate-700 shadow-inner;
+  }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+}
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-200 rounded-full hover:bg-slate-300 transition-colors;
+}
+
+/* TipTap Editor Styles */
+.ProseMirror {
+  @apply outline-none min-h-[400px] max-w-none px-2 sm:px-4 py-3;
+}
+
+.ProseMirror p {
+  @apply my-3 leading-relaxed text-slate-700 text-[1.05rem] sm:text-[1.1rem];
+}
+
+.ProseMirror h1 {
+  @apply text-3xl sm:text-4xl font-display font-black tracking-tight mt-8 mb-4 text-slate-900;
+}
+
+.ProseMirror h2 {
+  @apply text-2xl sm:text-3xl font-display font-extrabold tracking-tight mt-6 mb-3 text-slate-800;
+}
+
+.ProseMirror h3 {
+  @apply text-xl sm:text-2xl font-display font-bold mt-5 mb-2 text-slate-800;
+}
+
+.ProseMirror ul {
+  @apply list-disc list-inside pl-4 my-3 text-slate-700 space-y-1;
+}
+
+.ProseMirror ol {
+  @apply list-decimal list-inside pl-4 my-3 text-slate-700 space-y-1;
+}
+
+.ProseMirror blockquote {
+  @apply border-l-4 border-brand-500 pl-5 italic text-slate-600 my-5 bg-brand-50/50 py-3 pr-3 rounded-2xl rounded-l-none;
+}
+
+.ProseMirror pre {
+  @apply bg-slate-900 text-slate-100 font-mono p-5 rounded-2xl my-5 overflow-x-auto text-sm shadow-inner;
+}
+
+.ProseMirror code {
+  @apply bg-slate-100 text-brand-600 px-1.5 py-0.5 rounded-md text-[0.9em] font-semibold;
+}
+
+.ProseMirror img {
+  @apply max-w-full h-auto rounded-2xl shadow-xl my-8 mx-auto block transition-transform duration-300 hover:scale-[1.01];
+}
+
+.ProseMirror table {
+  @apply border-collapse table-auto w-full my-6 text-sm rounded-xl overflow-hidden shadow-sm border border-slate-200;
+}
+
+.ProseMirror th, .ProseMirror td {
+  @apply border-b border-slate-200 p-3 text-left;
+}
+
+.ProseMirror th {
+  @apply bg-slate-50 font-bold text-slate-800;
+}
+
+.ProseMirror .is-editor-empty:before {
+  @apply text-slate-400 content-[attr(data-placeholder)] float-left pointer-events-none h-0;
+}
