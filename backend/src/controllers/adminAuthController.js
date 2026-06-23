@@ -8,8 +8,17 @@ const loginAdmin = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
+    // Check if ANY admin exists to detect unseeded DB
+    const adminExists = await Admin.countDocuments();
+    if (adminExists === 0) {
+      return res.status(401).json({
+        success: false,
+        error: { message: 'Admin account not initialized. Please set ADMIN_EMAIL and ADMIN_PASSWORD environment variables and restart the server.', code: 'ADMIN_NOT_SEEDED' },
+      });
+    }
+
     // Check for admin
-    const admin = await Admin.findOne({ email }).select('+password');
+    const admin = await Admin.findOne({ email: email.trim() }).select('+password');
     if (!admin) {
       return res.status(401).json({
         success: false,
