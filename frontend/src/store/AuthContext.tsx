@@ -10,6 +10,10 @@ interface User {
   country?: string;
   bio?: string;
   role?: string;
+  username?: string;
+  dateOfBirth?: string;
+  gender?: string;
+  portfolioWebsite?: string;
 }
 
 interface AdminUser {

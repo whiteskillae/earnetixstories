@@ -36,7 +36,7 @@ interface BlogCardProps {
 
 import { useAuth } from '../../store/AuthContext';
 import api from '../../services/api';
-import { Share2, Repeat2, Bookmark } from 'lucide-react';
+import { Share2, Bookmark } from 'lucide-react';
 import { CommentDrawer } from './CommentDrawer';
 
 // ... (in component)

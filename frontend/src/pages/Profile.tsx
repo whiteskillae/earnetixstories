@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../store/AuthContext';
 import api from '../services/api';
-import { ImageIcon, Heart, MessageCircle, Bookmark, Users, Grid } from 'lucide-react';
+import { ImageIcon, Heart, MessageCircle, Bookmark, Grid } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export const Profile: React.FC = () => {
