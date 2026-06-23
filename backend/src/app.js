@@ -41,7 +41,9 @@ app.use(cookieParser());
 app.use(mongoSanitize());
 
 // Set security headers
-app.use(helmet());
+app.use(helmet({
+  crossOriginOpenerPolicy: { policy: "same-origin-allow-popups" }
+}));
 
 // Enable CORS
 const allowedOrigins = process.env.ALLOWED_ORIGINS 

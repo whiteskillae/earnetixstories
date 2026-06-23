@@ -37,8 +37,12 @@ export const Login: React.FC = () => {
       setIsLoading(true);
       setServerError(null);
       try {
-        await loginWithGoogle(tokenResponse.access_token);
-        navigate('/');
+        const result = await loginWithGoogle(tokenResponse.access_token);
+        if (result?.isNewUser) {
+          setServerError('Account not found. Please create an account first.');
+        } else {
+          navigate('/');
+        }
       } catch (err: any) {
         setServerError(err.message || 'Google OAuth failed.');
       } finally {
