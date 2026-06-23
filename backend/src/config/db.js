@@ -35,13 +35,24 @@ const seedAdmin = async () => {
       password: adminPassword,
     });
     console.log('Admin user seeded into strictly separate Admin collection.');
+  } else {
+    // Sync password if it has changed in env
+    const isMatch = await adminUser.matchPassword(adminPassword);
+    if (!isMatch) {
+      adminUser.password = adminPassword;
+      await adminUser.save();
+      console.log('Admin password updated to match environment variables.');
+    }
   }
 };
 
 const connectDB = async () => {
   try {
     const uri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/blog_app';
-    const conn = await mongoose.connect(uri, { serverSelectionTimeoutMS: 2000 });
+    const conn = await mongoose.connect(uri, { 
+      serverSelectionTimeoutMS: 5000,
+      family: 4 
+    });
     console.log(`MongoDB Connected: ${conn.connection.host}`);
     await seedDefaultCategories();
     await seedAdmin();
