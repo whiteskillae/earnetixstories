@@ -177,9 +177,7 @@ export const Write: React.FC = () => {
       formData.append('image', file);
 
       try {
-        const res = await api.post('/blogs/upload-inline', formData, {
-          headers: { 'Content-Type': 'multipart/form-data' },
-        });
+        const res = await api.post('/blogs/upload-inline', formData);
 
         // Insert into editor
         editor?.chain().focus().setImage({ src: res.data.url }).run();
@@ -202,9 +200,7 @@ export const Write: React.FC = () => {
       formData.append('image', file);
 
       try {
-        const res = await api.post('/blogs/upload-inline', formData, {
-          headers: { 'Content-Type': 'multipart/form-data' },
-        });
+        const res = await api.post('/blogs/upload-inline', formData);
 
         // Replace current image
         editor?.chain().focus().setImage({ src: res.data.url }).run();
@@ -270,14 +266,10 @@ export const Write: React.FC = () => {
       if (id) {
         // Update
         const blogId = (await api.get(`/blogs/slug/${id}`)).data.data._id;
-        await api.put(`/blogs/${blogId}`, formData, {
-          headers: { 'Content-Type': 'multipart/form-data' },
-        });
+        await api.put(`/blogs/${blogId}`, formData);
       } else {
         // Create
-        await api.post('/blogs', formData, {
-          headers: { 'Content-Type': 'multipart/form-data' },
-        });
+        await api.post('/blogs', formData);
       }
       
       // Clear drafts on success
