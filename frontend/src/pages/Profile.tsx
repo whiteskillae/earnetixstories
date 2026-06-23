@@ -59,7 +59,7 @@ export const Profile: React.FC = () => {
         const avatarData = new FormData();
         avatarData.append('avatar', avatarFile);
         const uploadRes = await api.put('/users/profile/avatar', avatarData, {
-          headers: { 'Content-Type': 'multipart/form-data' },
+          headers: { 'Content-Type': undefined },
         });
         updateUser({ profileImage: uploadRes.data.data.profileImage });
         setAvatarFile(null);

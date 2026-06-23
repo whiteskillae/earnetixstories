@@ -266,10 +266,14 @@ export const Write: React.FC = () => {
       if (id) {
         // Update
         const blogId = (await api.get(`/blogs/slug/${id}`)).data.data._id;
-        await api.put(`/blogs/${blogId}`, formData);
+        await api.put(`/blogs/${blogId}`, formData, {
+          headers: { 'Content-Type': undefined }
+        });
       } else {
         // Create
-        await api.post('/blogs', formData);
+        await api.post('/blogs', formData, {
+          headers: { 'Content-Type': undefined }
+        });
       }
       
       // Clear drafts on success
