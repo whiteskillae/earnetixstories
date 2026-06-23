@@ -27,7 +27,7 @@ const seedAdmin = async () => {
   
   if (!adminEmail || !adminPassword) return;
 
-  const adminUser = await Admin.findOne({ email: adminEmail });
+  const adminUser = await Admin.findOne({ email: adminEmail }).select('+password');
   if (!adminUser) {
     await Admin.create({
       name: 'System Admin',
