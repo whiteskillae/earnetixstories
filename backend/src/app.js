@@ -48,7 +48,7 @@ app.use(helmet({
 // Enable CORS
 const allowedOrigins = process.env.ALLOWED_ORIGINS 
   ? process.env.ALLOWED_ORIGINS.split(',') 
-  : ['http://localhost:5173', 'http://localhost:3000'];
+  : ['http://localhost:5173', 'http://localhost:3000', 'https://earnetixstories.com', 'https://www.earnetixstories.com'];
 
 app.use(cors({
   origin: (origin, callback) => {
